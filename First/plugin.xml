@@ -18,7 +18,7 @@
             id="org.eclipse.ui.forms.article">
       </category>
       <view
-            name="bugforecast"
+            name="BugForecast"
             category="org.eclipse.ui.forms.article"
             class="first.intro.Application"
             id="org.eclipse.ui.forms.article.views.FormView">

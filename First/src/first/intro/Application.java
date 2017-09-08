@@ -1,6 +1,9 @@
 package first.intro;
 
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -17,11 +20,13 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.part.ViewPart;
 
 	public class Application extends ViewPart {
-	 private FormToolkit toolkit;
+	 protected static final String CLOSED_OPTION = null;
+	private FormToolkit toolkit;
 	 private Form form;
 	 private Combo comboBox;
 	 private Button within;
 	 private Button cross;
+	 private Button local;
 	 private Button dN;
 	 private Button fS;
 	 private Button dB;
@@ -35,6 +40,7 @@ import org.eclipse.ui.part.ViewPart;
 	 private Button propeties;
 	 private Button bM;
 	 private Button reset;
+	 public String prova;
 	 
 	 /**
 	  * The constructor.
@@ -49,29 +55,51 @@ import org.eclipse.ui.part.ViewPart;
 	 public void createPartControl(Composite parent) {
 		  toolkit = new FormToolkit(parent.getDisplay());
 		  form = toolkit.createForm(parent);
-		  form.setText("VALIDATION STRATEGY");
-		  GridLayout layout = new GridLayout();
-		  form.getBody().setLayout(layout);
-		  layout.numColumns = 2;
-		  GridData gd = new GridData();
-		  gd.horizontalSpan = 2;
-		  within = toolkit.createButton(form.getBody(), "WITHIN-PROJECT", SWT.RADIO);
-		  cross = toolkit.createButton(form.getBody(), "CROSS-PROJECT", SWT.RADIO);
+		  GridLayout layout1 = new GridLayout();
+		  form.getBody().setLayout(layout1);
+		  layout1.numColumns = 4;
+		  layout1.makeColumnsEqualWidth=true;
+		  layout1.marginBottom=13;
+		  
+		  Label label6 = new Label(form.getBody(), SWT.NULL);
+		  label6.setText("Validation Strategy");
+		  
+		  
+		  within = toolkit.createButton(form.getBody(), "Within-Project", SWT.RADIO);
+		  cross = toolkit.createButton(form.getBody(), "Cross-Project", SWT.RADIO);
+		  local = toolkit.createButton(form.getBody(), "Local-Project", SWT.RADIO);
 		  within.setVisible(true);
 		  cross.setVisible(true);
+		 
+				     
 		  
 		  Label label = new Label(form.getBody(), SWT.NULL);
 		  label.setText("Input csv file/Training csv folder");
 		  Text text = new Text(form.getBody(), SWT.BORDER);
 		  text.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		  Label label1= new Label(form.getBody(), SWT.NULL);
-		  label1.setText("Output folder");
-		  Text text1= new Text(form.getBody(), SWT.BORDER);
-		  text1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		  Label labelsupport1= new Label(form.getBody(), SWT.NULL);
+		  labelsupport1.setText(" ");
+		  Label labelsupport4= new Label(form.getBody(), SWT.NULL);
+		  labelsupport4.setText(" ");
 		  Label label2 = new Label(form.getBody(), SWT.NULL);
 		  label2.setText("Test csv file");
 		  Text text2 = new Text(form.getBody(), SWT.BORDER);
 		  text2.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		  Label labelsupport2= new Label(form.getBody(), SWT.NULL);
+		  labelsupport2.setText(" ");
+		  Label labelsupport5= new Label(form.getBody(), SWT.NULL);
+		  labelsupport5.setText(" ");
+		  Label label1= new Label(form.getBody(), SWT.NULL);
+		  label1.setText("Output folder");
+		  Text text1= new Text(form.getBody(), SWT.BORDER);
+		  text1.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		  
+		  
+		  
+		  
+
+		 
+		  
 		  
 		  within.addMouseListener(new MouseListener() {@Override
 				public void mouseDoubleClick(MouseEvent e) {
@@ -125,50 +153,71 @@ import org.eclipse.ui.part.ViewPart;
 						
 					}		
 				});
-				  
-				  GridLayout layout1 = new GridLayout();
-				  form.getBody().setLayout(layout1);
-				  layout1.numColumns = 2;
-				  GridData gd1 = new GridData();
-				  gd1.horizontalSpan = 7;
-				  layout1.verticalSpacing=2;
+				  local.addMouseListener(new MouseListener() {@Override
+						public void mouseDoubleClick(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+						@Override
+						public void mouseDown(MouseEvent e) {
+							// TODO Auto-generated method stub
+							lC.setVisible(true);
+							dN.setVisible(true);
+							fS.setVisible(true);
+							dB.setVisible(true);
+							label2.setVisible(true);
+							text2.setVisible(true);
+							
+							
+						}
+						@Override
+						public void mouseUp(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
+						}		
+					});
+				 
 		
 		  
 		  
-		  String items[] = { "Item One", "Item Two", "Item Three", "Item Four",
-	      "Item Five" };
+		  String items[] = { "Log", "NB", "RBF", "MLP",
+	      "C45", "DTtable", "Voting", "Bagging", "Boosting", "Random Forest", "CODEP", "ASCI"};
 		  
+		  Label labelsupport6 = new Label(form.getBody(), SWT.NULL);
+		  labelsupport6.setText("");
 		  
+		  Label labelsupport3 = new Label(form.getBody(), SWT.NULL);
+		  labelsupport3.setText("");
 		  Label label3 = new Label(form.getBody(), SWT.NULL);
-		  label3.setText("Classificatori");
-		  
-		  
+		  label3.setText("Classifiers");
+		 
 		  comboBox = new Combo(form.getBody(), SWT.CENTER| SWT.READ_ONLY
 		            | SWT.DROP_DOWN);
 		  comboBox.setItems(items);
 		   
 		  propeties = toolkit.createButton(form.getBody(), "Properties", SWT.ICON_INFORMATION);
-		
-		  
-		  Text text11 = toolkit.createText(form.getBody(), "Information", SWT.SINGLE);
-		  GridData gd5 = new GridData();
-		  gd5.widthHint = 200;
-		  gd5.heightHint=150;
-		  text11.setLayoutData(gd5);
-		  text11.setVisible(false);
 		  
 		  
 		  propeties.addMouseListener(new MouseListener() {@Override
 				public void mouseDoubleClick(MouseEvent e) {
 					// TODO Auto-generated method stub
+			
 					
 				}
 				@Override
 				public void mouseDown(MouseEvent e) {
 					// TODO Auto-generated method stub
-					text11.setVisible(true);
 					
-					
+					 JOptionPane.showMessageDialog(null,"example","Details",JOptionPane.INFORMATION_MESSAGE);
+				     
+					 prova = (String) JOptionPane.showInputDialog("Insert details", "Example");
+					 JOptionPane.showConfirmDialog(null, "Conferma");
+					 JOptionPane.showMessageDialog(null, prova, "Details", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Fist/icons/eclipse128.png"));
+					 
+					 Label labelsupport7 = new Label(form.getBody(), SWT.NULL);
+					 labelsupport7.setText(prova);
+					 
+	
 				}
 				@Override
 				public void mouseUp(MouseEvent e) {
@@ -177,18 +226,29 @@ import org.eclipse.ui.part.ViewPart;
 				}		
 			});
 		  
+		  Label labelsupport13 = new Label(form.getBody(), SWT.NULL);
+		  labelsupport13.setText("");
+		  
 		  Section section = toolkit.createSection(form.getBody(), 
 				   Section.DESCRIPTION|Section.TITLE_BAR|
 				   Section.TWISTIE|Section.EXPANDED);
-		   section.setText("Pre-processing operation");
+		   section.setText("Pre-processing operations");
 		   Composite sectionClient = toolkit.createComposite(section);
 		   sectionClient.setLayout(new GridLayout());
 		   dN = toolkit.createButton(sectionClient, "Data Normalization", SWT.CHECK);
 		   fS = toolkit.createButton(sectionClient, "Feature Section", SWT.CHECK);
 		   dB = toolkit.createButton(sectionClient, "Data Balancing", SWT.CHECK);
-		   lC = toolkit.createButton(sectionClient, "Local", SWT.CHECK);
+		   lC = toolkit.createButton(sectionClient, "Local-Project", SWT.CHECK);
 		   section.setClient(sectionClient);
 		   
+		   Label labelsupport10 = new Label(form.getBody(), SWT.NULL);
+			  labelsupport10.setText("");
+			  
+			Label labelsupport8 = new Label(form.getBody(), SWT.NULL);
+			  labelsupport8.setText("");
+			  
+			Label labelsupport9 = new Label(form.getBody(), SWT.NULL);
+			  labelsupport9.setText("");
 		  
 		   Section section1 = toolkit.createSection(form.getBody(), 
 				   Section.DESCRIPTION|Section.TITLE_BAR|
@@ -204,6 +264,15 @@ import org.eclipse.ui.part.ViewPart;
 		   MCC = toolkit.createButton(sectionClient1, "MCC", SWT.CHECK);
 		   section1.setClient(sectionClient1);
 		   
+		   Label labelsupport11 = new Label(form.getBody(), SWT.NULL);
+			  labelsupport11.setText("");
+			  Label labelsupport12 = new Label(form.getBody(), SWT.NULL);
+			  labelsupport12.setText("");
+			  Label labelsupport15 = new Label(form.getBody(), SWT.NULL);
+			  labelsupport15.setText("");
+			  Label labelsupport14 = new Label(form.getBody(), SWT.NULL);
+			  labelsupport14.setText("");
+			  
 		   bM = toolkit.createButton(form.getBody(), "Build Model", SWT.COLOR_BLUE);
 		   reset = toolkit.createButton(form.getBody(), "Reset", SWT.CLOSE);
 		  }
