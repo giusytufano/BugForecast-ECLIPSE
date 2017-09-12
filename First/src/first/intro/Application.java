@@ -467,9 +467,6 @@ public class Application extends ViewPart {
 	
 				prova = (String) JOptionPane.showInputDialog("Insert details", select);
 				JOptionPane.showConfirmDialog(null, "Conferma");
-				JOptionPane.showMessageDialog(null, prova, "Details", JOptionPane.INFORMATION_MESSAGE,
-						new ImageIcon("Fist/icons/eclipse128.png"));
-
 				labelsupport4.setText(prova);
 
 			}
@@ -577,15 +574,29 @@ public class Application extends ViewPart {
 							val4=true;
 						
 						
-						
-						if(val1 && val2 && val3 && val4 && val11)
-							labelsupport14.setText("ok");
-						else
+						if(!within.getSelection()) {
+							if(val1 && val2 && val3 && val4 && val11)
+							{labelsupport14.setText("ok");}
 							
-							{JOptionPane.showMessageDialog(null,"Riempi tutti i campi", "Attention", JOptionPane.INFORMATION_MESSAGE,
+							else
+								{JOptionPane.showMessageDialog(null,"Riempi tutti i campi", "Attention", JOptionPane.INFORMATION_MESSAGE,
 									new ImageIcon("First//icons//cartella.png"));
-							labelsupport14.setText("no" + num3);
+								labelsupport14.setText("no" + num3);
+								}
+						}
+						
+						else 
+						{
+							if(val1 && val3 && val4 && val11)
+								labelsupport14.setText("ok");
+							else 
+							{
+								JOptionPane.showMessageDialog(null,"Riempi tutti i campi", "Attention", JOptionPane.INFORMATION_MESSAGE,
+										new ImageIcon("First//icons//cartella.png"));
+									labelsupport14.setText("no" + num3);	
 							}
+						}
+						
 						
 					
 
