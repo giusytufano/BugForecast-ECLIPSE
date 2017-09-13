@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.0"?>
+<?eclipse version="3.4"?>
 <plugin>
 
-    <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            name="%baseEditor"
-            default="true"
-            class="it.unisa.bugforecast.Application"
-            id="org.eclipse.ui.forms.article.base-editor">
-      </editor>
-   </extension>
    <extension
          point="org.eclipse.ui.views">
       <category
             name="Java"
-            id="org.eclipse.ui.forms.article">
+            id="BugForecast-Eclipse">
       </category>
       <view
             name="BugForecast"
-            category="org.eclipse.ui.forms.article"
+            inject="true"
+            icon="icons/sample.png"
+            category="BugForecast-Eclipse"
             class="it.unisa.bugforecast.Application"
-            id="org.eclipse.ui.forms.article.views.FormView">
+            id="bugforecasteclipse.views.SampleView">
       </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="org.eclipse.ui.resourcePerspective">
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
          <view
                ratio="0.5"
-               relative="org.eclipse.ui.views.TaskList"
+               relative="org.eclipse.ui.views.ProblemView"
                relationship="right"
-               id="org.eclipse.ui.forms.article.views.FormView">
+               id="bugforecasteclipse.views.SampleView">
          </view>
       </perspectiveExtension>
    </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+
 </plugin>
