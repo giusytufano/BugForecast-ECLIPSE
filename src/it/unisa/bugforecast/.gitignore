@@ -1,0 +1,33 @@
+# Created by .ignore support plugin (hsz.mobi)
+### JetBrains template
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff:
+.idea/
+
+### Java template
+*.jar
+### Gradle template
+.gradle
+/gradle/
+gradlew
+gradlew.bat
+
+# Ignore Gradle GUI config
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+/build/
+/bin/
+
+.classpath
+.project
+.settings/
+ASCI/.classpath
+ASCI/.project
+ASCI/.settings
