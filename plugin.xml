@@ -7,7 +7,7 @@
       <editor
             name="%baseEditor"
             default="true"
-            class="first.intro.Application"
+            class="it.unisa.bugforecast.Application"
             id="org.eclipse.ui.forms.article.base-editor">
       </editor>
    </extension>
@@ -20,7 +20,7 @@
       <view
             name="BugForecast"
             category="org.eclipse.ui.forms.article"
-            class="first.intro.Application"
+            class="it.unisa.bugforecast.Application"
             id="org.eclipse.ui.forms.article.views.FormView">
       </view>
    </extension>
