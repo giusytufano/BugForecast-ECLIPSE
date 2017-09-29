@@ -6,6 +6,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Item;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
@@ -22,7 +27,7 @@ public class Task {
 		Job job = new Job("BugForecast-ECLIPSE") {
 			protected IStatus run(IProgressMonitor monitor) {
 				try {
-					/*Study.run(new Application());*/
+					Study.run(new Application());
 					TimeUnit.MILLISECONDS.sleep(10000);
 				} 
 					catch (Exception e) {
@@ -43,8 +48,7 @@ public class Task {
 						
 			Application a= (Application) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("bugforecasteclipse.it.unisa.bugforecast.Application");
 			Result w= (Result) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("bugforecasteclipse.it.unisa.bugforecast.Result");
-			
-			w.item2.setText(0, a.control.get(0));
+				
 				
 		
 		} 
