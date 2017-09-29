@@ -1,10 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: BugForecast
-Bundle-SymbolicName: BugForecast;singleton:=true
+Bundle-Name: BugForecast-ECLIPSE
+Bundle-SymbolicName: BugForecast-ECLIPSE;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
- org.eclipse.ui.views;bundle-version="3.9.0",
  org.eclipse.ui.forms;bundle-version="3.7.100"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

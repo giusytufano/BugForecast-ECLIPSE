@@ -5,16 +5,24 @@
    <extension
          point="org.eclipse.ui.views">
       <category
-            name="Java"
-            id="BugForecast">
+            name="BugForecast-ECLIPSE"
+            id="BugForecast-ECLIPSE">
       </category>
       <view
-            name="BugForecast"
+            name="BugForecast-ECLIPSE"
             inject="true"
             icon="icons/sample.png"
-            category="BugForecast"
+            category="BugForecast-ECLIPSE"
             class="it.unisa.bugforecast.Application"
-            id="org.eclipse.ui.forms.article.views.FormView">
+            id="bugforecasteclipse.it.unisa.bugforecast.Application">
+      </view>
+      <view
+            category="BugForecast-ECLIPSE"
+            class="it.unisa.bugforecast.Result"
+            icon="icons/sample.png"
+            id="bugforecasteclipse.it.unisa.bugforecast.Result"
+            inject="true"
+            name="Result">
       </view>
    </extension>
    <extension
@@ -25,12 +33,24 @@
                ratio="0.5"
                relative="org.eclipse.ui.views.ProblemView"
                relationship="right"
-               id="org.eclipse.ui.forms.article.views.FormView">
+               id="bugforecasteclipse.it.unisa.bugforecast.Application">
+         </view>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="bugforecasteclipse.it.unisa.bugforecast.Result"
+               ratio="0.5"
+               relationship="right"
+               relative="org.eclipse.ui.views.ProblemView">
          </view>
       </perspectiveExtension>
    </extension>
    <extension
          point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
       <contexts
             file="contexts.xml">
       </contexts>
