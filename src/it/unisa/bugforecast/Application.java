@@ -586,7 +586,7 @@ public class Application extends ViewPart {
 						} else {
 							try {
 
-							   new Task();
+								new Task();
 								
 								GridLayout layout = new GridLayout(4, false);
 								
