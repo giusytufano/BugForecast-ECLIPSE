@@ -1,6 +1,8 @@
 package it.unisa.bugforecast;
 
 
+import java.util.ArrayList;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -31,11 +33,11 @@ public class Result extends ViewPart implements IViewPart {
 	public String stringa;
 	public Application a;
 	public TableItem item;
+	public TableItem item2;
 	public TableItem item3;
 	public TableItem item4;
 	public TableItem item5;
 	public TableItem item6;
-	public TableItem item2;;
 	
 	
 	
@@ -98,12 +100,14 @@ public class Result extends ViewPart implements IViewPart {
 		
 		
 		
-		TableItem item= new TableItem(table, SWT.NONE);
-		item.setText(0,"Accurancy");
-		item.setText(1, "0.1");
-		
+		item= new TableItem(table, SWT.NONE);
 		item2= new TableItem(table, SWT.NONE);
-		item2.setText(1, "0.1");
+		item3= new TableItem(table, SWT.NONE);
+		item4= new TableItem(table, SWT.NONE);
+		item5= new TableItem(table, SWT.NONE);
+		item6= new TableItem(table, SWT.NONE);
+		
+		
 		
 			
 		

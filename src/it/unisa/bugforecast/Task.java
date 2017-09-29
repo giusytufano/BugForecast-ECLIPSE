@@ -48,9 +48,39 @@ public class Task {
 						
 			Application a= (Application) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("bugforecasteclipse.it.unisa.bugforecast.Application");
 			Result w= (Result) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("bugforecasteclipse.it.unisa.bugforecast.Result");
-				
-				
-		
+			
+			int size= a.control.size();
+			
+			if(size>0) {
+			w.item.setText(0, a.control.get(0));
+			w.item.setText(1, "0.01");
+			size=size-1;}
+			
+			if(size>0) {
+			w.item2.setText(0, a.control.get(1));
+			w.item2.setText(1, "0.02");
+			size=size-1;}
+			
+			if(size>0) {
+			w.item3.setText(0, a.control.get(2));
+			w.item3.setText(1, "0.03");
+			size=size-1;}
+			
+			if(size>0) {
+			w.item4.setText(0, a.control.get(3));
+			w.item4.setText(1, "0.04");
+			size=size-1;}
+			
+
+			if(size>0) {
+			w.item5.setText(0, a.control.get(4));
+			w.item5.setText(1, "0.04");
+			size=size-1;}
+			
+			if(size>0) {
+			w.item6.setText(0, a.control.get(5));
+			w.item6.setText(1, "0.05");
+			size=size-1;}
 		} 
 		
 		catch (PartInitException e1) {
