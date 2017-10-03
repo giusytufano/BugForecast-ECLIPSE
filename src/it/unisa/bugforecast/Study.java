@@ -17,10 +17,12 @@ import java.util.logging.Logger;
 
 import weka.classifiers.evaluation.AggregateableEvaluation;
 import weka.classifiers.evaluation.Evaluation;
+import weka.core.Instance;
+import weka.core.Instances;
 
 public class Study {
 
-	public static void run(Application application) throws Exception {
+	public static Evaluation run(Application application) throws Exception {
 		String dataSetFolder = application.trainingFileText.getText();
 		String outputFolder = application.outputFolderText.getText();
 		String testFile = application.testFileText.getText();
@@ -132,6 +134,16 @@ public class Study {
 
 			Study.saveAccuracyMeasure(resultFile, testFile, classifierName, evaluation);
 		}
+
+		for (int i = 0; i < data.getNumberOfSets(); i++) {
+			Instances instances = data.getTestSet(i);
+
+			for (Instance instance : instances) {
+				instance.attribute(0);
+			}
+		}
+
+		return evaluation;
 	}
 
 	private static void saveAccuracyMeasure(File csvFile, String projectName, String modelName, Evaluation evaluation) {

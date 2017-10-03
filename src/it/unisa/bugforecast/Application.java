@@ -88,6 +88,10 @@ public class Application extends ViewPart {
 	public String valoremcc;
 	public String valoreau;
 	public ArrayList<String> control;
+	public Table table;
+	public TableItem item;
+	public TableItem item2;
+	public boolean numeroTab;
 	
 	
 	
@@ -109,8 +113,11 @@ public class Application extends ViewPart {
 		form1.setVisible(false);
 		GridLayout layout = new GridLayout(4, false);
 		form.getBody().setLayout(layout);
-		form1.getBody().setLayout(layout);		
+		form1.getBody().setLayout(layout);	
+		numeroTab=false;
+		
 		createTabFolder();
+		
 
 	}
 
@@ -586,11 +593,13 @@ public class Application extends ViewPart {
 						} else {
 							try {
 
-								new Task();
+								new Task(Application.this);
 								
 								GridLayout layout = new GridLayout(4, false);
 								
-								tab2 = new TabItem(tabFolder, SWT.NONE);
+								if(numeroTab==false)
+								{
+								tab2 = new TabItem(tabFolder, SWT.CLOSE);
 								tab2.setText("BugForecast-Result");
 
 								composite = new Composite(tabFolder, SWT.NULL);
@@ -598,10 +607,35 @@ public class Application extends ViewPart {
 								composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 6, 1));
 
 								composite.setLayout(layout);
-
+								
 								createResultForm();
+								
+								composite.pack();
+								
 
 								tab2.setControl(composite);
+								numeroTab=true;
+								}
+								
+								else {
+									
+									tab2.setText("BugForecast-Result");
+
+									composite = new Composite(tabFolder, SWT.NULL);
+
+									composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 6, 1));
+
+									composite.setLayout(layout);
+									
+									createResultForm();
+									
+									composite.pack();
+									
+
+									tab2.setControl(composite);
+								}
+								
+								
 
 							} catch (Exception e1) {
 								e1.printStackTrace();
@@ -634,10 +668,13 @@ public class Application extends ViewPart {
 		Label Result = new Label(composite, SWT.BORDER);
 		Result.setText("BUGFORECAST-RESULT");
 		Result.setLayoutData(gridData);
-
+		
 		CreateTableMetrics();
 
 		CreateTableClassifier();
+		
+
+	
 
 	}
 
@@ -698,7 +735,7 @@ public class Application extends ViewPart {
 			TableItem item5 = new TableItem(table, SWT.NONE);
 			item5.setText(0, "MCC");
 			item5.setText(1, "1.01");
-		}
+		} 
 
 		for (int i = 0; i < titles.length; i++) {
 			table.getColumn(i).pack();
@@ -754,6 +791,8 @@ public class Application extends ViewPart {
 
 		accurancyMetrics.setClient(sectionMetrics);
 		table.pack();
+		
+		sectionMetrics.pack();
 	}
 
 	public void setFocus() {

@@ -16,14 +16,6 @@
             class="it.unisa.bugforecast.Application"
             id="bugforecasteclipse.it.unisa.bugforecast.Application">
       </view>
-      <view
-            category="BugForecast-ECLIPSE"
-            class="it.unisa.bugforecast.Result"
-            icon="icons/sample.png"
-            id="bugforecasteclipse.it.unisa.bugforecast.Result"
-            inject="true"
-            name="Result">
-      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
@@ -34,15 +26,6 @@
                relative="org.eclipse.ui.views.ProblemView"
                relationship="right"
                id="bugforecasteclipse.it.unisa.bugforecast.Application">
-         </view>
-      </perspectiveExtension>
-      <perspectiveExtension
-            targetID="org.eclipse.jdt.ui.JavaPerspective">
-         <view
-               id="bugforecasteclipse.it.unisa.bugforecast.Result"
-               ratio="0.5"
-               relationship="right"
-               relative="org.eclipse.ui.views.ProblemView">
          </view>
       </perspectiveExtension>
    </extension>
