@@ -23,6 +23,7 @@ import weka.core.Instances;
 public class Study {
 
 	public static Evaluation run(Application application) throws Exception {
+		
 		String dataSetFolder = application.trainingFileText.getText();
 		String outputFolder = application.outputFolderText.getText();
 		String testFile = application.testFileText.getText();
@@ -40,6 +41,7 @@ public class Study {
 		}
 
 		File datasetFile = new File(dataSetFolder);
+		System.out.println(datasetFile.getAbsolutePath());
 		File resultFolder;
 
 		switch (validationTechniques) {
@@ -94,24 +96,24 @@ public class Study {
 			System.out.println("Validation technique: within-project (10-folds validation).");
 			numFolds = 10;
 			data = datasetOperations.kFoldsValidation(datasetFile.getAbsolutePath(), numFolds);
-			data = datasetOperations.normalizeData(data);
-			data = datasetOperations.selectAttributes(data);
-			data = datasetOperations.balanceData(data);
+			//data = datasetOperations.normalizeData(data);
+			//data = datasetOperations.selectAttributes(data);
+			//data = datasetOperations.balanceData(data);
 			break;
 		case "cross":
 			System.out.println("Validation technique: cross-project.");
 			data = datasetOperations.leaveOneOut(testFile, datasetFilePaths);
-			data = datasetOperations.normalizeData(data);
-			data = datasetOperations.selectAttributes(data);
-			data = datasetOperations.balanceData(data);
+			//data = datasetOperations.normalizeData(data);
+			//data = datasetOperations.selectAttributes(data);
+			//data = datasetOperations.balanceData(data);
 			numFolds = 1;
 			break;
 		case "local":
 			System.out.println("Validation technique: local cross-project.");
 			data = datasetOperations.local(testFile, datasetFilePaths);
-			data = datasetOperations.normalizeData(data);
-			data = datasetOperations.selectAttributes(data);
-			data = datasetOperations.balanceData(data);
+			//data = datasetOperations.normalizeData(data);
+			//data = datasetOperations.selectAttributes(data);
+			//data = datasetOperations.balanceData(data);
 			numFolds = 1;
 			break;
 		}

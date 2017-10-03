@@ -1,5 +1,6 @@
 package it.unisa.bugforecast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -252,9 +253,9 @@ public class Application extends ViewPart {
 
 					if (dataFile != null) {
 						String[] selectedFiles = fileDialog.getFileNames();
-						StringBuffer stringBuffer = new StringBuffer(fileDialog.getFilterPath() + ": \n");
+						StringBuffer stringBuffer = new StringBuffer(fileDialog.getFilterPath() + File.separator);
 						for (int i = 0; i < selectedFiles.length; i++) {
-							stringBuffer.append(selectedFiles[i] + "\n");
+							stringBuffer.append(selectedFiles[i]);
 						}
 						trainingFileText.setText(stringBuffer.toString());
 					}
@@ -391,12 +392,20 @@ public class Application extends ViewPart {
 		gridData2.horizontalAlignment = GridData.FILL;
 		gridData2.horizontalSpan = 2;
 		classifierComboBox.setLayoutData(gridData2);
-
 		GridData gridData3 = new GridData();
 		gridData3.horizontalAlignment = GridData.FILL;
 		Button classifierProperties = toolkit.createButton(composite, "Properties", SWT.ICON_INFORMATION);
 		classifierProperties.setLayoutData(gridData3);
 
+		
+		classifierComboBox.addSelectionListener(new SelectionAdapter() {
+		      public void widgetSelected(SelectionEvent e) {
+		          classifierName=classifierComboBox.getText().toString();
+		        }
+		      });
+		classifierProperties.setLayoutData(gridData3);
+
+		
 		classifierProperties.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseDoubleClick(MouseEvent e) {
@@ -404,7 +413,6 @@ public class Application extends ViewPart {
 
 			@Override
 			public void mouseDown(MouseEvent e) {
-				classifierName = classifierComboBox.getText().toString();
 				classifierDetails = JOptionPane.showInputDialog("Insert details");
 			}
 
@@ -412,6 +420,7 @@ public class Application extends ViewPart {
 			public void mouseUp(MouseEvent e) {
 			}
 		});
+		
 
 	}
 

@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -15,28 +16,34 @@ import org.eclipse.ui.PlatformUI;
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.evaluation.Prediction;
 
-
 public class Task {
-	
-public Evaluation evaluation;
-public Application a;
+
+	public Evaluation evaluation;
+	public Application a;
 
 	public Task(Application application) {
 
 		Job job = new Job("BugForecast-ECLIPSE") {
 			protected IStatus run(IProgressMonitor monitor) {
-				try {
-					
-					evaluation = Study.run(new Application());
-					
-					
-					ArrayList<Prediction> predictions = evaluation.predictions();
-					for (Prediction prediction : predictions) {
-						
+				Display.getDefault().asyncExec(new Runnable() {
+					public void run() {
+						try {
+							evaluation = Study.run(application);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
-					
+				});
+
+				ArrayList<Prediction> predictions = evaluation.predictions();
+				for (Prediction prediction : predictions) {
+
+				}
+
+				try {
 					TimeUnit.MILLISECONDS.sleep(10000);
-				} catch (Exception e) {
+				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -52,10 +59,6 @@ public Application a;
 			a = (Application) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 					.showView("bugforecasteclipse.it.unisa.bugforecast.Application");
 
-
-			
-		
-			
 		}
 
 		catch (PartInitException e1) {
