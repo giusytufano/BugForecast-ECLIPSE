@@ -64,8 +64,10 @@ public class Model {
 			System.err.println("Unknown classifier.");
 		}
 
+		if(optionsString!=null) {
 		String[] options = weka.core.Utils.splitOptions(optionsString);
-		classifier.setOptions(options);
+		classifier.setOptions(options);}
+		
 
 		pTrainingSet.setClassIndex(pTrainingSet.numAttributes() - 1);
 		pTestSet.setClassIndex(pTrainingSet.numAttributes() - 1);

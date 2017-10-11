@@ -92,11 +92,14 @@ public class Application extends ViewPart {
 	public Table table;
 	public TableItem item;
 	public TableItem item2;
+	public TableItem item3;
+	public TableItem item4;
+	public TableItem item5;
+	public TableItem item6;
 	public boolean numeroTab;
-	
-	
-	
-	
+	public Study study;
+	public Task task;
+
 	/**
 	 * The constructor.
 	 */
@@ -114,11 +117,10 @@ public class Application extends ViewPart {
 		form1.setVisible(false);
 		GridLayout layout = new GridLayout(4, false);
 		form.getBody().setLayout(layout);
-		form1.getBody().setLayout(layout);	
-		numeroTab=false;
-		
+		form1.getBody().setLayout(layout);
+		numeroTab = false;
+
 		createTabFolder();
-		
 
 	}
 
@@ -162,6 +164,7 @@ public class Application extends ViewPart {
 		projectTypeRadioButtons.setLayout(new GridLayout(3, false));
 		projectTypeRadioButtons.setLayoutData(gridData);
 
+		
 		externalProjectRadio.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseDoubleClick(MouseEvent e) {
@@ -186,8 +189,8 @@ public class Application extends ViewPart {
 			@Override
 			public void mouseDown(MouseEvent e) {
 				withinButton.setVisible(false);
-				testFileLabel.setVisible(false);
-				testFileText.setVisible(false);
+				testFileLabel.setVisible(true);
+				testFileText.setVisible(true);
 			}
 
 			@Override
@@ -397,15 +400,13 @@ public class Application extends ViewPart {
 		Button classifierProperties = toolkit.createButton(composite, "Properties", SWT.ICON_INFORMATION);
 		classifierProperties.setLayoutData(gridData3);
 
-		
 		classifierComboBox.addSelectionListener(new SelectionAdapter() {
-		      public void widgetSelected(SelectionEvent e) {
-		          classifierName=classifierComboBox.getText().toString();
-		        }
-		      });
+			public void widgetSelected(SelectionEvent e) {
+				classifierName = classifierComboBox.getText().toString();
+			}
+		});
 		classifierProperties.setLayoutData(gridData3);
 
-		
 		classifierProperties.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseDoubleClick(MouseEvent e) {
@@ -420,7 +421,6 @@ public class Application extends ViewPart {
 			public void mouseUp(MouseEvent e) {
 			}
 		});
-		
 
 	}
 
@@ -441,7 +441,7 @@ public class Application extends ViewPart {
 	}
 
 	public void createMetricsSection() {
-		
+
 		control = new ArrayList<String>();
 		GridData gridData = new GridData();
 		gridData.horizontalAlignment = GridData.FILL;
@@ -459,97 +459,83 @@ public class Application extends ViewPart {
 		aucrocButton = toolkit.createButton(sectionClient, "Auc-Roc", SWT.CHECK);
 		mccButton = toolkit.createButton(sectionClient, "MCC", SWT.CHECK);
 		metricsSection.setClient(sectionClient);
-		
+
 		accuracyButton.addSelectionListener(new SelectionAdapter() {
-			
+
 			public void widgetSelected(SelectionEvent e) {
-			
-				if(control.indexOf("Accuracy")==-1) 
-				{
+
+				if (control.indexOf("Accuracy") == -1) {
 					control.add("Accuracy");
-				}
-				else control.remove("Accuracy");
+				} else
+					control.remove("Accuracy");
 			}
 		});
-		
+
 		precisionButton.addSelectionListener(new SelectionAdapter() {
-			
+
 			public void widgetSelected(SelectionEvent e) {
-			
-				if(control.indexOf("Precision")==-1) 
-				{
+
+				if (control.indexOf("Precision") == -1) {
 					control.add("Precision");
-				}
-				else control.remove("Precision");
+				} else
+					control.remove("Precision");
 			}
 		});
-		
+
 		recallButton.addSelectionListener(new SelectionAdapter() {
-			
+
 			public void widgetSelected(SelectionEvent e) {
-			
-				if(control.indexOf("Recall")==-1) 
-				{
+
+				if (control.indexOf("Recall") == -1) {
 					control.add("Recall");
-				}
-				else control.remove("Recall");
+				} else
+					control.remove("Recall");
 			}
 		});
-		
+
 		fmeasureButton.addSelectionListener(new SelectionAdapter() {
-			
+
 			public void widgetSelected(SelectionEvent e) {
-			
-				if(control.indexOf("FMeasure")==-1) 
-				{
+
+				if (control.indexOf("FMeasure") == -1) {
 					control.add("FMeasure");
-				}
-				else control.remove("FMeasure");
+				} else
+					control.remove("FMeasure");
 			}
 		});
-		
+
 		aucrocButton.addSelectionListener(new SelectionAdapter() {
-			
+
 			public void widgetSelected(SelectionEvent e) {
-			
-				if(control.indexOf("Auc-Roc")==-1) 
-				{
+
+				if (control.indexOf("Auc-Roc") == -1) {
 					control.add("Auc-Roc");
-				}
-				else control.remove("Auc-Roc");
+				} else
+					control.remove("Auc-Roc");
 			}
 		});
-		
+
 		mccButton.addSelectionListener(new SelectionAdapter() {
-			
+
 			public void widgetSelected(SelectionEvent e) {
-			
-				if(control.indexOf("MCC")==-1) 
-				{
+
+				if (control.indexOf("MCC") == -1) {
 					control.add("MCC");
-				}
-				else control.remove("MCC");
+				} else
+					control.remove("MCC");
 			}
 		});
 
 	}
 
-	
 	public void createSubmitButton() {
 		GridData gridData = new GridData();
 		gridData.horizontalAlignment = GridData.FILL;
 		gridData.horizontalSpan = 4;
 		buildModelButton = toolkit.createButton(composite, "Build Model", SWT.NULL);
-
+		buildModelButton.setLayoutData(gridData);
+		
 		buildModelButton.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-
-			@Override
-			public void mouseDown(MouseEvent e) {
-
-				buildModelButton.addMouseListener(new MouseListener() {
 					@Override
 					public void mouseDoubleClick(MouseEvent e) {
 					}
@@ -599,15 +585,15 @@ public class Application extends ViewPart {
 						if (errorFlag == true) {
 							JOptionPane.showMessageDialog(null, "Some input data are missing.", "Attention",
 									JOptionPane.INFORMATION_MESSAGE, new ImageIcon("icons//cartella.png"));
-						} else {
-							try {
+						}
 
-								new Task(Application.this);
-								
-								GridLayout layout = new GridLayout(4, false);
-								
-								if(numeroTab==false)
-								{
+						else {
+							
+							new Task(Application.this);
+
+							GridLayout layout = new GridLayout(4, false);
+
+							if (!numeroTab) {
 								tab2 = new TabItem(tabFolder, SWT.CLOSE);
 								tab2.setText("BugForecast-Result");
 
@@ -616,58 +602,48 @@ public class Application extends ViewPart {
 								composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 6, 1));
 
 								composite.setLayout(layout);
-								
+
 								createResultForm();
-								
+
 								composite.pack();
-								
 
 								tab2.setControl(composite);
-								numeroTab=true;
-								}
-								
-								else {
-									
-									tab2.setText("BugForecast-Result");
-
-									composite = new Composite(tabFolder, SWT.NULL);
-
-									composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 6, 1));
-
-									composite.setLayout(layout);
-									
-									createResultForm();
-									
-									composite.pack();
-									
-
-									tab2.setControl(composite);
-								}
-								
-								
-
-							} catch (Exception e1) {
-								e1.printStackTrace();
-
+								numeroTab = true;
 							}
+
+							else if(numeroTab) {
+
+								tab2.setText("BugForecast-Result");
+
+								composite = new Composite(tabFolder, SWT.NULL);
+
+								composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 6, 1));
+
+								composite.setLayout(layout);
+
+								createResultForm();
+
+								composite.pack();
+
+								tab2.setControl(composite);
+							}
+
 						}
 
 					}
 
 					@Override
 					public void mouseUp(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
 					}
-				});
 
-			}
+					
+				}); 
+		
+	
 
-			@Override
-			public void mouseUp(MouseEvent e) {
-			}
-		});
-
-		buildModelButton.setLayoutData(gridData);
-	}
+		}
 
 	public void createResultForm() {
 		GridData gridData = new GridData();
@@ -677,13 +653,10 @@ public class Application extends ViewPart {
 		Label Result = new Label(composite, SWT.BORDER);
 		Result.setText("BUGFORECAST-RESULT");
 		Result.setLayoutData(gridData);
-		
+
 		CreateTableMetrics();
 
 		CreateTableClassifier();
-		
-
-	
 
 	}
 
@@ -709,41 +682,43 @@ public class Application extends ViewPart {
 			TableColumn column = new TableColumn(table, SWT.NONE);
 			column.setText(titles[i]);
 		}
+		
+	
 
 		if (accuracyButton.getSelection()) {
 			TableItem item = new TableItem(table, SWT.NONE);
 			item.setText(0, "Accuracy");
-			item.setText(1, "0.01");
+			item.setText(1, Study.accuracyvalue);
 		}
 
 		if (precisionButton.getSelection()) {
 			TableItem item1 = new TableItem(table, SWT.NONE);
 			item1.setText(0, "Precision");
-			item1.setText(1, "0.05");
+			item1.setText(1, Study.precisionvalue);
 		}
 
 		if (recallButton.getSelection()) {
 			TableItem item2 = new TableItem(table, SWT.NONE);
 			item2.setText(0, "Recall");
-			item2.setText(1, "0.10");
+			item2.setText(1, Study.recallvalue);
 		}
 
 		if (fmeasureButton.getSelection()) {
 			TableItem item3 = new TableItem(table, SWT.NONE);
 			item3.setText(0, "FMeasure");
-			item3.setText(1, "0.15");
+			item3.setText(1, Study.fmeasurevalue);
 		}
 
 		if (aucrocButton.getSelection()) {
 			TableItem item4 = new TableItem(table, SWT.NONE);
 			item4.setText(0, "Auc-Roc");
-			item4.setText(1, "0.50");
+			item4.setText(1, Study.aucrocvalue);
 		}
 
 		if (mccButton.getSelection()) {
 			TableItem item5 = new TableItem(table, SWT.NONE);
 			item5.setText(0, "MCC");
-			item5.setText(1, "1.01");
+			item5.setText(1, Study.mccvalue);
 		} 
 
 		for (int i = 0; i < titles.length; i++) {
@@ -780,19 +755,9 @@ public class Application extends ViewPart {
 		}
 
 		TableItem item = new TableItem(table, SWT.NONE);
-		item.setText(0, "exemple.csv");
-		item.setText(1, "true");
-		item.setText(2, "true");
-
-		TableItem item1 = new TableItem(table, SWT.NONE);
-		item1.setText(0, "exemple2.csv");
-		item1.setText(1, "true");
-		item1.setText(2, "false");
-
-		TableItem item2 = new TableItem(table, SWT.NONE);
-		item2.setText(0, "exemple23.csv");
-		item2.setText(1, "true");
-		item2.setText(2, "false");
+		item.setText(0, Study.classname);
+		item.setText(1, Study.classnamevalue);
+		item.setText(2, Study.classnameactualvalue);
 
 		for (int i = 0; i < titles.length; i++) {
 			table.getColumn(i).pack();
@@ -800,7 +765,7 @@ public class Application extends ViewPart {
 
 		accurancyMetrics.setClient(sectionMetrics);
 		table.pack();
-		
+
 		sectionMetrics.pack();
 	}
 

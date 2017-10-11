@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import it.unisa.bugforecast.TrainingTestSets;
 
+import it.unisa.bugforecast.TrainingTestSets;
 import weka.attributeSelection.BestFirst;
 import weka.attributeSelection.CfsSubsetEval;
 import weka.clusterers.XMeans;

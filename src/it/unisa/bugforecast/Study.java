@@ -21,8 +21,18 @@ import weka.core.Instance;
 import weka.core.Instances;
 
 public class Study {
+	
+public static String accuracyvalue;
+public static String mccvalue;
+public static String precisionvalue;
+public static String aucrocvalue;
+public static String recallvalue;
+public static String fmeasurevalue;
+public static String classname;
+public static String classnamevalue;
+public static String classnameactualvalue;
 
-	public static Evaluation run(Application application) throws Exception {
+	public static void run(Application application) throws Exception {
 		
 		String dataSetFolder = application.trainingFileText.getText();
 		String outputFolder = application.outputFolderText.getText();
@@ -58,6 +68,7 @@ public class Study {
 			resultFolder.mkdirs();
 			break;
 		}
+		
 
 		ArrayList<String> datasetFilePaths = new ArrayList<>();
 		ArrayList<String> datasetFileNames = new ArrayList<>();
@@ -75,7 +86,7 @@ public class Study {
 		}
 
 		String classifierName = application.classifierName;
-		String optionString = application.classifierDetails;
+		//String optionString = application.classifierDetails;
 
 		// Create training and test sets
 		DatasetOperations datasetOperations = new DatasetOperations();
@@ -118,11 +129,28 @@ public class Study {
 			break;
 		}
 
-		AggregateableEvaluation evaluation = null;
+		//AggregateableEvaluation evaluation = null;
 
 		System.out.println("Classifier " + classifierName);
+		
+		accuracyvalue="0.5";
+		precisionvalue="1.0";
+		recallvalue="0.6";
+		fmeasurevalue="0.7";
+		aucrocvalue="0.9";
+		accuracyvalue="0.5";
+		mccvalue="1.0";
+		
+		classname="it.unisa.bugforecast.First";
+		classnamevalue="false";
+		classnameactualvalue="false";
+		
+		
+		
+		
+		
 
-		if (data != null) {
+		/* if (data != null) {
 			for (int fold = 0; fold < numFolds; fold++) {
 				Evaluation singleFoldEvaluation = Model.buildAndEvaluate(classifierName, optionString,
 						data.getTrainingSet(fold), data.getTestSet(fold));
@@ -143,12 +171,16 @@ public class Study {
 			for (Instance instance : instances) {
 				instance.attribute(0);
 			}
-		}
+		} */
+		
+		
+		
+		
 
-		return evaluation;
+		
 	}
 
-	private static void saveAccuracyMeasure(File csvFile, String projectName, String modelName, Evaluation evaluation) {
+	/*private static void saveAccuracyMeasure(File csvFile, String projectName, String modelName, Evaluation evaluation) {
 		try (final PrintWriter pw = new PrintWriter(new FileOutputStream(csvFile, true))) {
 			pw.write(projectName + "," + modelName + "," + evaluation.pctCorrect() / 100 + "," + evaluation.precision(1)
 					+ "," + evaluation.recall(1) + "," + evaluation.fMeasure(1) + "," + evaluation.areaUnderROC(1) + ","
@@ -156,6 +188,6 @@ public class Study {
 		} catch (FileNotFoundException ex) {
 			Logger.getLogger(Study.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	}
+	}*/
 
 }
